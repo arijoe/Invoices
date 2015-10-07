@@ -1,0 +1,29 @@
+{
+    "line_items": [
+        {
+            "id": 1,
+            "name": "Banana",
+            "price": 1.00
+        },
+        {
+            "id": 2,
+            "name": "Apple",
+            "price": 1.50
+        },
+        {
+            "id": 3,
+            "name": "Pineapple",
+            "price": 3.00
+        },
+        {
+            "id": 4,
+            "name": "Papaya",
+            "price": 2.00
+        },
+        {
+            "id": 5,
+            "name": "Avacado",
+            "price": 0.75
+        }
+    ]
+}
