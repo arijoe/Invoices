@@ -11,8 +11,22 @@
 
     <h1>Fruit Invoice</h1>
 
+    <form class="invoice-form">
+      <label>Item</label>
+      <select class="line-items" for="Item"></select>
 
+      <br>
 
+      <label>Quantity</label>
+      <input type="number" for="Quantity" value=1></input>
+
+      <label>Price</label>
+      <input type="number" for="Price"></input>
+
+      <button id="add-item">Add Item</button>
+      <br><br>
+      <button id="save-item">Save</button>
+    </form>
   </body>
 
   <script src="./javascripts/jquery.js"></script>

@@ -1,5 +1,5 @@
-{
-    "line_items": [
+window.data = {
+    "line_items":[
         {
             "id": 1,
             "name": "Banana",
