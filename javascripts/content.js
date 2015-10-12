@@ -17,7 +17,7 @@ $( "select" )
     }
   );
 
-    $("#price").val(price);
+    $("#price").val( (price).toFixed(2) );
   })
   .change();
 
