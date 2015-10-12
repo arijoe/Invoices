@@ -14,21 +14,23 @@ $( "select" )
     var price = "";
     $( "select option:selected" ).val( function() {
       price = $( this ).data( "price" );
-    }
-  );
+    });
 
     $("#price").val( (price).toFixed(2) );
   })
   .change();
 
   $( "select, #quantity, #price" ).change( function () {
-      var quant = $( "#quantity" ).val();
-      var price = $( "#price" ).val();
-      $( "#total" ).val( "$" + (quant * price).toFixed(2) );
-    }
-  )
+    var quant = $( "#quantity" ).val();
+    var price = $( "#price" ).val();
+
+    $( "#total" ).val( "$" + (quant * price).toFixed(2) );
+  })
   .change();
 
-$( "#add-item").click(function() {
-  $(this).parent().after( $( ".input-row" ).clone() );
-});
+document.getElementById("add-item").addEventListener( "click", addRow, false );
+
+function addRow (e) {
+  e.preventDefault();
+  $(this).parent().after( $( ".input-row" ).clone(true) );
+};
