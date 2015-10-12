@@ -21,7 +21,7 @@ $( "select" )
   })
   .change();
 
-  $( "#quantity" ).change( function () {
+  $( "#quantity, #price" ).change( function () {
       var quant = $( "#quantity" ).val();
       var price = $( "#price" ).val();
       $( "#total" ).val( "$" + (quant * price).toFixed(2) );
