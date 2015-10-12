@@ -21,10 +21,14 @@ $( "select" )
   })
   .change();
 
-  $( "#quantity, #price" ).change( function () {
+  $( "select, #quantity, #price" ).change( function () {
       var quant = $( "#quantity" ).val();
       var price = $( "#price" ).val();
       $( "#total" ).val( "$" + (quant * price).toFixed(2) );
     }
   )
   .change();
+
+$( "#add-item").click(function() {
+  $(this).parent().after( $( ".input-row" ).clone() );
+});

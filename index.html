@@ -12,20 +12,22 @@
     <h1>Fruit Invoice</h1>
 
     <form class="invoice-form">
-      <label>Item</label>
-      <select class="line-items" for="Item"></select>
+      <div class="input-row">
+        <label>Item</label>
+        <select class="line-items" for="Item"></select>
 
-      <label>Quantity</label>
-      <input type="number" for="Quantity" id="quantity" value=1></input>
+        <label>Quantity</label>
+        <input type="number" for="Quantity" id="quantity" value=1></input>
 
-      <label>Price</label>
-      <input type="number" min="0.01" step="0.01" max="2500" for="Price" id="price"></input>
+        <label>Price</label>
+        <input type="number" min="0.01" step="0.01" max="2500" for="Price" id="price"></input>
 
-      <label>Total</label>
-      <input type="text" for="Total" id="total" readonly>
+        <label>Total</label>
+        <input type="text" for="Total" id="total" readonly>
 
-      <button id="add-item">Add Item</button>
-      <br><br>
+        <button id="add-item">Add Item</button>
+      </div>
+      <br>
       <button id="save-item">Save</button>
     </form>
   </body>
