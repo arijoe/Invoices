@@ -9,28 +9,30 @@ data.line_items.forEach( function (item) {
   );
 });
 
-$( "select" )
-  .change( function () {
+$( "select" ).change( function () {
     var price = "";
+    var row = $(this).parent();
+
     $( "select option:selected" ).val( function() {
       price = $( this ).data( "price" );
     });
 
-    $("#price").val( (price).toFixed(2) );
-  })
-  .change();
+    $(row).find(".price").val( (price).toFixed(2) );
+}).change();
 
-  $( "select, #quantity, #price" ).change( function () {
-    var quant = $( "#quantity" ).val();
-    var price = $( "#price" ).val();
+$( "select, .quantity, .price" ).change( function () {
+  var row = $(this).parent();
+  var quant = $(row).find( ".quantity" ).val();
+  var price = $(row).find( ".price" ).val();
 
-    $( "#total" ).val( "$" + (quant * price).toFixed(2) );
-  })
-  .change();
 
-document.getElementById("add-item").addEventListener( "click", addRow, false );
+  $(row).find( ".total" ).val( "$" + (quant * price).toFixed(2) );
+}).change();
 
-function addRow (e) {
+$(".add-item").on( "click", function(e) {
   e.preventDefault();
-  $(this).parent().after( $( ".input-row" ).clone(true) );
-};
+
+  var row = $(this).parent()
+  console.log($(this).parent().parent());
+  $(row).after( $(row).clone(true, true) );
+});
