@@ -48,7 +48,7 @@ $( "select, .quantity, .price" ).change( function () {
 }).change();
 
 // Add new row after row where button is clicked
-$(".add-item").on( "click", function(e) {
+$(".add-item").on( "click", function (e) {
   e.preventDefault();
 
   var selected = $(this).parent().find("option:selected").html();
@@ -60,3 +60,11 @@ $(".add-item").on( "click", function(e) {
 });
 
 // Save form to separate file when user clicks "Save" button
+var savedInvoices = [];
+$("#save-invoice").on("click", function (e) {
+  e.preventDefault();
+
+  var form = $(this).parent();
+  savedInvoices.push(form);
+  console.log(savedInvoices);
+});
