@@ -68,8 +68,8 @@ $("#save-invoice").on("click", function (e) {
   var number = $(this).parent().find("#invoice-number").val();
   var name = $(this).parent().find("#customer-name").val();
 
-  if (number === "" && name === "") {
-    alert("You need to supply an invoice number and customer name!")
+  if (number === "") {
+    alert("You need to supply an invoice number!")
   } else if ( number in savedInvoices  ){
     alert("Invoice already exists with this number!")
   } else {
@@ -81,11 +81,23 @@ $("#save-invoice").on("click", function (e) {
 // Function to render saved invoices
 addSavedInvoice = function (number, name) {
   name = name === "" ? "NO NAME" : name;
-  
+
   $(".saved-invoices").append(
     $("<tr/>", {
       "class": "saved-invoice",
       html: "<td><a>Invoice: " + number + ", " + name + "</a></td>"
     })
+    .data("invoice", number)
   );
+
+  // Load invoice data to DOM
+  $(".saved-invoice").on("click", function (e) {
+    e.preventDefault();
+
+    var number = $(this).data("invoice");
+    var form = $("form");
+    var newForm = $(savedInvoices[number]);
+
+    console.log(newForm);
+  });
 };
