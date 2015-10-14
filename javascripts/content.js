@@ -1,16 +1,19 @@
+// Display invoice form when user clicks 'New' button
 $("#create-new").click( function (e) {
   e.preventDefault();
 
+  // Set date to today by default
   var now = new Date();
   var day = ("0" + now.getDate()).slice(-2);
   var month = ("0" + (now.getMonth() + 1)).slice(-2);
-  
+
   var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
 
   $('#date').val(today);
   $("form").css("display", "block");
 });
 
+// Populate select menu with data from library
 data.line_items.forEach( function (item) {
   $(".line-items").append(
     $("<option/>", {
@@ -22,6 +25,7 @@ data.line_items.forEach( function (item) {
   );
 });
 
+// Change item price on select event
 $( "select" ).change( function () {
     var price = "";
     var row = $(this).parent();
@@ -33,6 +37,7 @@ $( "select" ).change( function () {
     $(row).find(".price").val( (price).toFixed(2) );
 }).change();
 
+// Change line total on select event, or quantity/price change
 $( "select, .quantity, .price" ).change( function () {
   var row = $(this).parent();
   var quant = $(row).find( ".quantity" ).val();
@@ -42,6 +47,7 @@ $( "select, .quantity, .price" ).change( function () {
   $(row).find( ".total" ).val( "$" + (quant * price).toFixed(2) );
 }).change();
 
+// Add new row after row where button is clicked
 $(".add-item").on( "click", function(e) {
   e.preventDefault();
 
@@ -52,3 +58,5 @@ $(".add-item").on( "click", function(e) {
   $(row).after( newRow );
   $(newRow).find("select").val("'" + selected + "'");
 });
+
+// Save form to separate file when user clicks "Save" button
