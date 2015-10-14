@@ -1,6 +1,14 @@
 $("#create-new").click( function (e) {
   e.preventDefault();
+
+  var now = new Date();
+  var day = ("0" + now.getDate()).slice(-2);
+  var month = ("0" + (now.getMonth() + 1)).slice(-2);
   
+  var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+  $('#date').val(today);
+  $("form").css("display", "block");
 });
 
 data.line_items.forEach( function (item) {
