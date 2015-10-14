@@ -1,19 +1,26 @@
+var originalForm = $("form").html();
+
 // Display invoice form when user clicks 'New' button
 $("#create-new").click( function (e) {
   e.preventDefault();
 
-  // Set date to today by default
+  // Variables for default date setting
   var now = new Date();
   var day = ("0" + now.getDate()).slice(-2);
   var month = ("0" + (now.getMonth() + 1)).slice(-2);
-
   var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
 
+  // If first form for session, unhide--else, reset form
+  if ($("form").css("display") === "none") {
+    $("form").css("display", "block");
+  } else {
+    $("form").html(originalForm);
+  };
+
   $('#date').val(today);
-  $("form").css("display", "block");
 });
 
-// Populate select menu with data from library
+
 data.line_items.forEach( function (item) {
   $(".line-items").append(
     $("<option/>", {
