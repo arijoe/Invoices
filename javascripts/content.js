@@ -1,12 +1,23 @@
+var savedInvoices = {}; // Global variable for saved invoices
+
 // Actions displayed here, initialized at the bottom
 (function () {
 
   $.formEvents = function () {
-    this.addContent();
-    this.itemPrice();
-    this.itemTotal();
-    this.addRow();
-    this.saveInvoice();
+    this.initialize();
+  };
+
+  $.formEvents.prototype.initialize = function (htmlData) {
+    if (!htmlData) {
+      this.addContent();
+      this.itemPrice();
+      this.itemTotal();
+      this.addRow();
+      this.defaultDate();
+      this.saveInvoice();
+    } else {
+      $("form").html(htmlData);
+    };
   };
 
   // Adds line items to select menu
@@ -21,6 +32,16 @@
         .data("price", item.price)
       );
     });
+  };
+
+  //Set date to today by default
+  $.formEvents.prototype.defaultDate = function () {
+    var now = new Date();
+    var day = ("0" + now.getDate()).slice(-2);
+    var month = ("0" + (now.getMonth() + 1)).slice(-2);
+    var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+
+    $('#date').val(today);
   };
 
   // Change item price on select event
@@ -43,9 +64,16 @@
       var row = $(this).parent();
       var quant = $(row).find( ".quantity" ).val();
       var price = $(row).find( ".price" ).val();
+      var lineTotal = $(row).find( ".total" );
+      var sum = 0;
 
+      lineTotal.val( "$" + (quant * price).toFixed(2) );
+      lineTotal.data("line-total", quant * price);
 
-      $(row).find( ".total" ).val( "$" + (quant * price).toFixed(2) );
+      $(".total").each( function (idx, total) {
+        sum += ($(total).data("line-total"));
+      })
+      $(".sum-total").val( "$" + (sum).toFixed(2) )
     }).change();
   };
 
@@ -56,19 +84,16 @@
 
       var selected = $(this).parent().find("option:selected").html();
       var row = $(this).parent();
-      var newRow = $(row).clone(true, true);
+      var newRow = $(row).clone(true);
 
       $(row).after( newRow );
-      $(newRow).find("select").val("'" + selected + "'");
     });
   };
 
   // Save form to local variable and render in DOM when user clicks "Save" button
-  var savedInvoices = {};
   $.formEvents.prototype.saveInvoice = function () {
     $("#save-invoice").on("click", function (e) {
       e.preventDefault();
-      console.log(this);
 
       var form = $(this).parent();
       var number = $(this).parent().find("#invoice-number").val();
@@ -102,10 +127,10 @@
       e.preventDefault();
 
       var number = $(this).data("invoice");
-      var form = $("form");
-      var newForm = $(savedInvoices[number]);
+      var newForm = $(savedInvoices[number]).html();
 
-      console.log(newForm);
+      $("html").off();
+      new $.formEvents(newForm);
     });
   };
 
@@ -117,16 +142,9 @@
 
 // START HERE
 // Display invoice form when user clicks 'New' button
-$("#create-new").click( function (e) {
+$("#create-new").on("click", function (e) {
   e.preventDefault();
   var originalForm = $("form").html();
-
-  // Variables for default date setting
-  var now = new Date();
-  var day = ("0" + now.getDate()).slice(-2);
-  var month = ("0" + (now.getMonth() + 1)).slice(-2);
-  var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
-
 
   // If first form for session, unhide--else, reset form
   if ($("form").css("display") === "none") {
@@ -135,6 +153,5 @@ $("#create-new").click( function (e) {
     $("form").html(originalForm);
   };
 
-  $('#date').val(today); //Set date
   $("html").formActions(); //Enable jQuery listeners
 });
