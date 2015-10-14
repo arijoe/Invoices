@@ -60,11 +60,21 @@ $(".add-item").on( "click", function (e) {
 });
 
 // Save form to separate file when user clicks "Save" button
-var savedInvoices = [];
+var savedInvoices = {};
 $("#save-invoice").on("click", function (e) {
   e.preventDefault();
 
   var form = $(this).parent();
-  savedInvoices.push(form);
-  console.log(savedInvoices);
+  var number = $(this).parent().find("#invoice-number").val();
+  var name = $(this).parent().find("#customer-name").val();
+
+  if (number === "" && name === "") {
+    alert("You need to supply an invoice number and customer name!")
+  } else if ( number in savedInvoices  ){
+    alert("Invoice already exists with this number!")
+  } else {
+    savedInvoices[number] = form;
+    console.log(name);
+    console.log(savedInvoices);
+  }
 });
