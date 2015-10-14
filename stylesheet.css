@@ -1,6 +1,6 @@
 /* DOC STYLING */
 
-html, body, form, div, h1, h2 {
+html, body, form, div, h1, h2, table, tr, td, a {
   margin: 0;
   padding: 0;
   border: 0;
@@ -37,8 +37,16 @@ h1 {
 
 h2 {
   font-size: 17px;
-  font-weight: 400;
   margin: 5px;
+  color: rgba(40, 100, 100, 1);
+}
+
+a {
+  cursor: pointer;
+}
+
+a:hover {
+  color: #000;
 }
 
 /* FORM */

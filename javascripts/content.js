@@ -17,7 +17,7 @@ $("#create-new").click( function (e) {
 data.line_items.forEach( function (item) {
   $(".line-items").append(
     $("<option/>", {
-      "class": "line_item",
+      "class": "line-item",
       "value": item.name,
       html: item.name
     })
@@ -59,7 +59,7 @@ $(".add-item").on( "click", function (e) {
   $(newRow).find("select").val("'" + selected + "'");
 });
 
-// Save form to separate file when user clicks "Save" button
+// Save form to local variable and render in DOM when user clicks "Save" button
 var savedInvoices = {};
 $("#save-invoice").on("click", function (e) {
   e.preventDefault();
@@ -74,7 +74,18 @@ $("#save-invoice").on("click", function (e) {
     alert("Invoice already exists with this number!")
   } else {
     savedInvoices[number] = form;
-    console.log(name);
-    console.log(savedInvoices);
+    addSavedInvoice(number, name)
   }
 });
+
+// Function to render saved invoices
+addSavedInvoice = function (number, name) {
+  name = name === "" ? "NO NAME" : name;
+  
+  $(".saved-invoices").append(
+    $("<tr/>", {
+      "class": "saved-invoice",
+      html: "<td><a>Invoice: " + number + ", " + name + "</a></td>"
+    })
+  );
+};
