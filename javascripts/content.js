@@ -1,3 +1,8 @@
+$("#create-new").click( function (e) {
+  e.preventDefault();
+  
+});
+
 data.line_items.forEach( function (item) {
   $(".line-items").append(
     $("<option/>", {
@@ -32,7 +37,10 @@ $( "select, .quantity, .price" ).change( function () {
 $(".add-item").on( "click", function(e) {
   e.preventDefault();
 
-  var row = $(this).parent()
-  console.log($(this).parent().parent());
-  $(row).after( $(row).clone(true, true) );
+  var selected = $(this).parent().find("option:selected").html();
+  var row = $(this).parent();
+  var newRow = $(row).clone(true, true);
+
+  $(row).after( newRow );
+  $(newRow).find("select").val("'" + selected + "'");
 });

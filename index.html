@@ -11,7 +11,20 @@
 
     <h1>Fruit Invoice</h1>
 
+    <button id="create-new">New Invoice</button>
+    <br><br>
     <form id="invoice-form">
+      <div class="invoice-data">
+        <label>Customer Name</label>
+        <input type="text" for="Customer Name"></input>
+
+        <label>Date</label>
+        <input type="date" for="Date"></input>
+
+        <label>Invoice Number</label>
+        <input type="text" for="Invoice Number"></input>
+      </div>
+      <br>
       <div class="input-row">
         <label>Item</label>
         <select class="line-items" for="Item"></select>
@@ -30,6 +43,7 @@
       <br>
       <button id="save-item">Save</button>
     </form>
+
   </body>
 
   <script src="./javascripts/jquery.js"></script>
