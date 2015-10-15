@@ -25,12 +25,11 @@ html {
 }
 
 body {
-  font-family: sans-serif;
+  position: relative;
+  font-family: 'Inconsolata', sans-serif;
   font-size: 14px;
   color: rgba(100, 52, 55, 1);
   font-weight: 200;
-  margin: 0 auto;
-  width: 904px;
 }
 
 h1 {
@@ -59,20 +58,28 @@ a:hover {
   display: block;
   border: 1px solid red;
   width: 200px;
-  float: left;
+  position: absolute;
+  right: 5px;
+  top: 5px;
 }
 
 /* FORM */
 
 form {
-  display: none;
+  margin: auto;
+  top: 5px;
   width: 700px;
-  float: left;
+  height: 900px;
+  outline: 1px solid red;
+}
+
+.input-row, .total-fields, #save-invoice {
+  display: none;
 }
 
 .total-fields {
-  display: block;
   color: red;
   float: right;
   margin: 15px 50px 5px 5px;
+  height: 1204px;
 }

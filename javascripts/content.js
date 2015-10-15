@@ -147,8 +147,8 @@ $("#create-new").on("click", function (e) {
   var originalForm = $("form").html();
 
   // If first form for session, unhide--else, reset form
-  if ($("form").css("display") === "none") {
-    $("form").css("display", "block");
+  if ($(".input-row").css("display") === "none") {
+    $(".input-row, .total-fields, #save-invoice").css("display", "block");
   } else {
     $("form").html(originalForm);
   };
