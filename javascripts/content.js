@@ -8,6 +8,8 @@ var savedInvoices = {}; // Global variable for saved invoices
   };
 
   $.formEvents.prototype.initialize = function (htmlData) {
+    $("#customer-name").find("input").focus();
+
     if (!htmlData) {
       this.addContent();
       this.itemPrice();
@@ -39,16 +41,16 @@ var savedInvoices = {}; // Global variable for saved invoices
     var now = new Date();
     var day = ("0" + now.getDate()).slice(-2);
     var month = ("0" + (now.getMonth() + 1)).slice(-2);
-    var today = now.getFullYear()+"-"+(month)+"-"+(day) ;
+    var today = now.getFullYear() + "-" + month + "-" + day;
 
-    $('#date').val(today);
+    $("#date").find("input").val(today);
   };
 
   // Change item price on select event
   $.formEvents.prototype.itemPrice = function () {
     $( "select" ).change( function () {
         var price = "";
-        var row = $(this).parent();
+        var row = $(this).parent().parent();
 
         $( "select option:selected" ).val( function() {
           price = $( this ).data( "price" );
@@ -61,7 +63,7 @@ var savedInvoices = {}; // Global variable for saved invoices
   // Change line total on select event, or quantity/price change
   $.formEvents.prototype.itemTotal = function () {
     $( "select, .quantity, .price" ).change( function () {
-      var row = $(this).parent();
+      var row = $(this).parent().parent();
       var quant = $(row).find( ".quantity" ).val();
       var price = $(row).find( ".price" ).val();
       var lineTotal = $(row).find( ".total" );
@@ -73,6 +75,7 @@ var savedInvoices = {}; // Global variable for saved invoices
       $(".total").each( function (idx, total) {
         sum += ($(total).data("line-total"));
       })
+
       $(".sum-total").val( "$" + (sum).toFixed(2) )
     }).change();
   };
@@ -82,12 +85,11 @@ var savedInvoices = {}; // Global variable for saved invoices
     $(".add-item").on( "click", function (e) {
       e.preventDefault();
 
-      var selected = $(this).parent().find("option:selected").html();
       var row = $(this).parent();
       var newRow = $(row).clone(true);
 
       $(row).after( newRow );
-    });
+    }).bind(this);
   };
 
   // Save form to local variable and render in DOM when user clicks "Save" button
@@ -95,12 +97,13 @@ var savedInvoices = {}; // Global variable for saved invoices
     $("#save-invoice").on("click", function (e) {
       e.preventDefault();
 
-      var form = $(this).parent();
-      var number = $(this).parent().find("#invoice-number").val();
-      var name = $(this).parent().find("#customer-name").val();
+      var form = $("#invoice-form");
+      var number = form.find("#invoice-number").find("input").val();
+      var name = form.find("#customer-name").find("input").val();
 
       if (number === "") {
         alert("You need to supply an invoice number!")
+        $("#invoice-number").find("input").focus();
       } else if ( number in savedInvoices  ){
         alert("Invoice already exists with this number!")
       } else {
@@ -148,7 +151,8 @@ $("#create-new").on("click", function (e) {
 
   // If first form for session, unhide--else, reset form
   if ($(".input-row").css("display") === "none") {
-    $(".input-row, .total-fields, #save-invoice").css("display", "block");
+    $(".total-fields, #save-invoice").css("display", "block");
+    $(".input-row").css("display", "flex");
   } else {
     $("form").html(originalForm);
   };

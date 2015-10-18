@@ -15,42 +15,69 @@
 
     <h1>Fruit Invoice</h1>
 
-    <br><br>
-    <form id="invoice-form group">
+    <form id="invoice-form" class="group">
+
       <div class="invoice-data">
-        <label>Customer Name</label>
-        <input type="text" for="Customer Name" id="customer-name"></input>
 
-        <label>Date</label>
-        <input type="date" for="Date" id="date"></input>
+        <div class="invoice-data-field" id="customer-name">
+          <label>Customer Name</label>
+          <input type="text" for="Customer Name"></input>
+        </div>
 
-        <label>Invoice Number</label>
-        <input type="text" for="Invoice Number" id="invoice-number"></input>
-      </div>
-      <br>
-      <div class="input-row">
-        <label>Item</label>
-        <select class="line-items" for="Item"></select>
+        <div class="invoice-data-field" id="invoice-number"></>
+          <label>Invoice Number</label>
+          <input type="text" for="Invoice Number"></input>
+        </div>
 
-        <label>Quantity</label>
-        <input type="number" for="Quantity" class="quantity" value=1></input>
+        <div class="invoice-data-field" id="agent-name">
+          <label>Agent Name</label>
+          <input type="text" for="Agent Name" value="Ari Weitzman"></input>
+        </div>
 
-        <label>Price</label>
-        <input type="number" min="0.01" step="0.01" max="2500" for="Price" class="price"></input>
+        <div class="invoice-data-field" id="date">
+          <label>Date</label>
+          <input type="date" for="Date"></input>
+        </div>
 
-        <label>Total</label>
-        <input type="text" for="Total" class="total" readonly>
-
-        <button class="add-item">Add Item</button>
       </div>
 
-      <div class="total-fields">
-        <label>Sum Total</label>
-        <input type="text" for="Sum Total" class="sum-total" readonly>
-      </div>
+      <div class="form-body">
+        <div class="input-row group">
 
-      <br>
-      <button id="save-invoice">Save</button>
+          <div class="select-item">
+            <label>Item</label>
+            <select class="line-items" for="Item"></select>
+          </div>
+
+          <div class="input">
+            <label>Quantity</label>
+            <input type="number" for="Quantity" class="quantity" value=1></input>
+          </div>
+
+          <div class="input">
+            <label>Price</label>
+            <input type="number" min="0.01" step="0.01" max="2500" for="Price" class="price"></input>
+          </div>
+
+          <div class="row-total">
+            <label>Total</label>
+            <input type="text" for="Total" class="total" readonly>
+          </div>
+
+          <button class="add-item">+</button>
+        </div>
+
+        <div class="total-fields">
+
+          <label id="notes-label">Notes</label>
+          <input id="notes-input" type="text" for="Notes">
+
+          <label>Sum Total</label>
+          <input type="text" for="Sum Total" class="sum-total" readonly>
+        </div>
+
+        <button id="save-invoice">Save</button>
+      </div>
     </form>
 
     <div class="saved-invoices group">

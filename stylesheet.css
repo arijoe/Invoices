@@ -1,6 +1,7 @@
-/* DOC STYLING */
+/*RESET */
 
-html, body, form, div, h1, h2, table, tr, td, a {
+html, body, form, div, h1, h2, table,
+input, tr, td, label, select, button {
   margin: 0;
   padding: 0;
   border: 0;
@@ -14,6 +15,23 @@ html, body, form, div, h1, h2, table, tr, td, a {
   list-style: none;
 }
 
+input[type="number"],
+input[type="text"] {
+  -webkit-appearance: none;
+  display: inline-block;
+  box-sizing: content-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  width: auto;
+  font: inherit;
+  vertical-align: baseline;
+  background: transparent;
+  color: inherit;
+}
+
+/* DOC STYLING */
 .group:after {
   content: "";
   display: block;
@@ -22,6 +40,7 @@ html, body, form, div, h1, h2, table, tr, td, a {
 
 html {
   background: #ddd;
+  height: 1050px;
 }
 
 body {
@@ -30,56 +49,271 @@ body {
   font-size: 14px;
   color: rgba(100, 52, 55, 1);
   font-weight: 200;
+  min-width: 1010px;
 }
 
 h1 {
   display: block;
-  text-align: center;
   font-size: 24px;
-  color: rgba(40, 100, 100, 1);
-  margin: 5px;
+  color: #000;
+  margin: 30px 50px;
+  font-style: italic;
+  transform:scale(1,1.5); /* W3C */
+    -webkit-transform:scale(1,1.5); /* Safari and Chrome */
+    -moz-transform:scale(1,1.5); /* Firefox */
+    -ms-transform:scale(1,1.5); /* IE 9 */
+    -o-transform:scale(1,1.5); /* Opera */
 }
 
 h2 {
   font-size: 17px;
   margin: 5px;
-  color: rgba(40, 100, 100, 1);
+  color: #107;
 }
 
-a {
+#save-invoice, #create-new {
+  position: absolute;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: 18px;
+  border: 2px solid #000;
+  border-radius: 2px;
+  box-shadow: 0px -3px 0px 0px #888;
   cursor: pointer;
 }
 
-a:hover {
-  color: #000;
+#create-new {
+  left: 610px;
+  top: -8px;
+  color: #f00;
+  z-index: 1;
 }
+
+#create-new:hover {
+  color: #0c0;
+}
+
+#create-new:active {
+  color: #0c0;
+  top: -12px;
+  box-shadow: none;
+}
+
+/* SAVED INVOICES MENU */
 
 .saved-invoices {
   display: block;
-  border: 1px solid red;
+  border: 1px solid #888;
   width: 200px;
   position: absolute;
-  right: 5px;
-  top: 5px;
+  background: #eee;
+  right: 35px;
+  top: 70px;
 }
 
 /* FORM */
 
 form {
-  margin: auto;
-  top: 5px;
+  position: relative;
+  margin: 20px 10px 20px 50px;
+  top: 15px;
   width: 700px;
   height: 900px;
-  outline: 1px solid red;
+  box-shadow: 3px -3px 5px 3px #555;
+  background: #eee;
+  outline: 1px solid #888;
 }
+
+.form-body {
+  position: absolute;
+  top: 180px;
+}
+
+#save-invoice {
+  color: #107;
+  position: absolute;
+  display: inline-block;
+  top: -259px;
+  left: 470px;
+}
+
+#save-invoice:hover {
+  color: #0c0;
+}
+
+#save-invoice:active {
+  color: #0c0;
+  top: -261px;
+  box-shadow: none;
+}
+
+/* INVOICE HEADER */
+
+.invoice-data {
+  font-size: 16px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #000;
+  display: block;
+  position: relative;
+  top: 20px;
+  margin: 10px;
+  transform:scale(1,1.5); /* W3C */
+    -webkit-transform:scale(1,1.5); /* Safari and Chrome */
+    -moz-transform:scale(1,1.5); /* Firefox */
+    -ms-transform:scale(1,1.5); /* IE 9 */
+    -o-transform:scale(1,1.5); /* Opera */
+}
+
+.invoice-data input {
+  border-bottom: 1px solid #555;
+  padding: 5px;
+  width: 150px;
+}
+
+#customer-name input, #agent-name input {
+  border-right: 2px solid #999;
+  text-transform: uppercase;
+}
+
+#agent-name input {
+  margin-left: 23px;
+}
+
+#invoice-number input, #date input {
+  border-left: 2px solid #999;
+}
+
+#invoice-number input {
+  text-transform: uppercase;
+}
+
+.invoice-data input:focus {
+  border-bottom-color: #f00;
+  background: #fff;
+}
+
+.invoice-data div {
+  position: absolute;
+}
+
+.invoice-data div input {
+  color: #107;
+}
+
+#customer-name {
+  top: 15px;
+  left: 15px;
+}
+
+#agent-name {
+  top: 55px;
+  left: 15px;
+}
+
+#invoice-number {
+  top: 15px;
+  right: 15px;
+}
+
+#date {
+  top: 50px;
+  right: 15px;
+}
+
+/* INPUT ROW */
 
 .input-row, .total-fields, #save-invoice {
   display: none;
 }
 
+.input-row {
+  border: 1px solid #999;
+  margin: 0 10px;
+  background: #ddd;
+}
+
+.input-row:nth-child(n+2) {
+  border-top: none;
+}
+
+.input-row div {
+  float: left;
+  padding: 6px 9px 4px 9px;
+  width: calc(100%) + 10px;
+}
+
+.input-row .select-item {
+  padding: 8px 11px 2px 11px;
+}
+
+.input-row div input {
+  width: 80px;
+  background: #fff;
+  margin-left: 5px;
+  padding: 3px 5px;
+}
+
+.input-row div select {
+  width: 100px;
+  background: #fff;
+  margin-left: 3px;
+  padding: 3px 5px;
+}
+
+.input-row div input:focus {
+  outline: 1px solid #0c0;
+}
+
+.input-row div:nth-child(n+2) {
+  border-left: 1px solid #999;
+}
+
+.add-item {
+  background: #fff;
+  color: #0c0;
+  font-weight: 700;
+  padding: 2px 4px;
+  cursor: pointer;
+  outline: 1px solid #999;
+}
+
+.add-item:hover {
+  color: #107;
+}
+
+/* SUM-TOTAL */
+
+#notes-label {
+  color: inherit;
+}
+
+#notes-input {
+  width: 375px;
+  margin-left: 10px;
+}
+
 .total-fields {
-  color: red;
   float: right;
-  margin: 15px 50px 5px 5px;
-  height: 1204px;
+  border-left: 1px solid #999;
+  border-right: 1px solid #999;
+  border-bottom: 1px solid #999;
+  margin: 0 10px;
+  background: #ddd;
+  padding: 6px 9px 4px 9px;
+  width: calc(100%) + 10px;
+}
+
+.total-fields label {
+  color: #f00;
+}
+
+.total-fields input {
+  width: 80px;
+  background: #fff;
+  margin: 0 15px;
+  padding: 3px 5px;
+  height: 40px;
+  font-size: 16px;
+  text-align: center;
 }
