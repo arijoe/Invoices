@@ -1,7 +1,7 @@
 /*RESET */
 
 html, body, form, div, h1, h2, table,
-input, tr, td, label, select, button {
+input, tr, td, label, select, button, textarea {
   margin: 0;
   padding: 0;
   border: 0;
@@ -239,7 +239,7 @@ form {
 
 .input-row div {
   float: left;
-  padding: 6px 9px 4px 9px;
+  padding: 6px 10px 4px 10px;
   width: calc(100%) + 10px;
 }
 
@@ -289,8 +289,10 @@ form {
 }
 
 #notes-input {
-  width: 375px;
+  width: 378px;
   margin-left: 10px;
+  text-align: left;
+  font-size: 12px;
 }
 
 .total-fields {
@@ -308,7 +310,8 @@ form {
   color: #f00;
 }
 
-.total-fields input {
+.total-fields input,
+.total-fields textarea {
   width: 80px;
   background: #fff;
   margin: 0 15px;
@@ -316,4 +319,5 @@ form {
   height: 40px;
   font-size: 16px;
   text-align: center;
+  vertical-align: middle;
 }
