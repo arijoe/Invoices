@@ -52,7 +52,7 @@ var savedInvoices = {}; // Global variable for saved invoices
         var price = "";
         var row = $(this).parent().parent();
 
-        $( "select option:selected" ).val( function() {
+        $(row).find( "select option:selected" ).val( function() {
           price = $( this ).data( "price" );
         });
 
