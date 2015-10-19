@@ -169,7 +169,7 @@ var savedInvoices = {}; // Global variable for saved invoices
 
 // START HERE
 // Display invoice form when user clicks 'New' button
-$("#create-new").on("click", function (e) {
+$("#create-new, form").on("click", function (e) {
   e.preventDefault();
   var originalForm = $("form").html();
 
