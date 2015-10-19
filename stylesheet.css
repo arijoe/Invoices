@@ -207,6 +207,7 @@ form {
 
 .invoice-data input:focus {
   border-bottom-color: #f00;
+  background: #fff;
 }
 
 .invoice-data div {
