@@ -171,6 +171,7 @@ var savedInvoices = {}; // Global variable for saved invoices
 // Display invoice form when user clicks 'New' button
 $("#create-new, form").on("click", function (e) {
   e.preventDefault();
+  $("form").off();
   var originalForm = $("form").html();
 
   // If first form for session, unhide--else, reset form
