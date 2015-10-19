@@ -15,6 +15,7 @@ var savedInvoices = {}; // Global variable for saved invoices
       this.itemPrice();
       this.itemTotal();
       this.addRow();
+      this.removeRow();
       this.defaultDate();
       this.saveInvoice();
     } else {
@@ -62,10 +63,11 @@ var savedInvoices = {}; // Global variable for saved invoices
 
   // Change line total on select event, or quantity/price change
   $.formEvents.prototype.itemTotal = function () {
-    $( "select, .quantity, .price" ).change( function () {
+    $( "select, .quantity, .price, .sales-tax" ).change( function () {
       var row = $(this).parent().parent();
       var quant = $(row).find( ".quantity" ).val();
       var price = $(row).find( ".price" ).val();
+      var tax = $(".sales-tax").val();
       var lineTotal = $(row).find( ".total" );
       var sum = 0;
 
@@ -76,7 +78,8 @@ var savedInvoices = {}; // Global variable for saved invoices
         sum += ($(total).data("line-total"));
       })
 
-      $(".sum-total").val( "$" + (sum).toFixed(2) )
+      $(".sub-total").val( "$" + (sum).toFixed(2) );
+      $(".sum-total").val( "$" + (sum + sum * tax).toFixed(2) );
     }).change();
   };
 
@@ -85,10 +88,31 @@ var savedInvoices = {}; // Global variable for saved invoices
     $(".add-item").on( "click", function (e) {
       e.preventDefault();
 
+      if ($(".input-row").size() >= 20) {
+        alert("Spreadsheet cannot contain more than 20 rows!")
+        return;
+      };
+
       var row = $(this).parent();
       var newRow = $(row).clone(true);
 
       $(row).after( newRow );
+      $(row).find("select").trigger("change");
+    }).bind(this);
+  };
+
+  // Remove row when clicked
+  $.formEvents.prototype.removeRow = function () {
+    $(".remove-item").on( "click", function (e) {
+      e.preventDefault();
+
+      if ($(".input-row").size() === 1) {
+        alert("Spreadsheet must contain at least one row!");
+        return;
+      };
+
+      $(this).parent().remove();
+      $("select").trigger("change");
     }).bind(this);
   };
 
@@ -120,7 +144,7 @@ var savedInvoices = {}; // Global variable for saved invoices
     $(".saved-invoices").append(
       $("<tr/>", {
         "class": "saved-invoice",
-        html: "<td><a>Invoice: " + number + ", " + name + "</a></td>"
+        html: "<td>Invoice: <a>" + number.toUpperCase() + ", " + name.toUpperCase() + "</a></td>"
       })
       .data("invoice", number)
     );

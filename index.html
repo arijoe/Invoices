@@ -65,6 +65,7 @@
           </div>
 
           <button class="add-item">+</button>
+          <button class="remove-item">-</button>
         </div>
 
         <div class="total-fields">
@@ -72,8 +73,23 @@
           <label id="notes-label">Notes</label>
           <textarea id="notes-input" type="text" for="Notes"></textarea>
 
-          <label>Sum Total</label>
-          <input type="text" for="Sum Total" class="sum-total" readonly>
+          <div class="final-data">
+
+            <div class="sub-fields">
+              <label>Sub Total</label>
+              <input type="text" for="Sum Total" class="sub-total" readonly>
+            </div>
+
+            <div class="tax-fields">
+              <label>Sales Tax</label>
+              <input type="number" for="Sum Total" class="sales-tax" value="0.07">
+            </div>
+
+            <div class="sum-total-fields">
+              <label>Total</label>
+              <input type="text" for="Sum Total" class="sum-total" readonly>
+            </div>
+          </div>
         </div>
 
         <button id="save-invoice">Save</button>

@@ -1,6 +1,6 @@
 /*RESET */
 
-html, body, form, div, h1, h2, table,
+html, body, form, div, h1, h2, table, a,
 input, tr, td, label, select, button, textarea {
   margin: 0;
   padding: 0;
@@ -111,6 +111,19 @@ h2 {
   top: 70px;
 }
 
+.saved-invoice a {
+  cursor: pointer;
+}
+
+.saved-invoice a:hover {
+  font-weight: 700;
+  color: #0c0;
+}
+
+.saved-invoice a:active {
+  color: #f00;
+}
+
 /* FORM */
 
 form {
@@ -127,6 +140,10 @@ form {
 .form-body {
   position: absolute;
   top: 180px;
+}
+
+.form-body input {
+  text-align: right;
 }
 
 #save-invoice {
@@ -190,7 +207,6 @@ form {
 
 .invoice-data input:focus {
   border-bottom-color: #f00;
-  background: #fff;
 }
 
 .invoice-data div {
@@ -239,7 +255,7 @@ form {
 
 .input-row div {
   float: left;
-  padding: 6px 10px 4px 10px;
+  padding: 6px 8px 4px 8px;
   width: calc(100%) + 10px;
 }
 
@@ -269,7 +285,8 @@ form {
   border-left: 1px solid #999;
 }
 
-.add-item {
+.add-item,
+.remove-item {
   background: #fff;
   color: #0c0;
   font-weight: 700;
@@ -278,7 +295,12 @@ form {
   outline: 1px solid #999;
 }
 
-.add-item:hover {
+.remove-item {
+  color: #f00;
+}
+
+.add-item:hover,
+.remove-item:hover {
   color: #107;
 }
 
@@ -286,28 +308,27 @@ form {
 
 #notes-label {
   color: inherit;
+  vertical-align: top;
 }
 
 #notes-input {
-  width: 378px;
+  width: 380px;
   margin-left: 10px;
   text-align: left;
   font-size: 12px;
+  height: 65px;
 }
 
 .total-fields {
   float: right;
+  position: relative;
   border-left: 1px solid #999;
   border-right: 1px solid #999;
   border-bottom: 1px solid #999;
   margin: 0 10px;
   background: #ddd;
-  padding: 6px 9px 4px 9px;
+  padding: 12px 10px 6px 10px;
   width: calc(100%) + 10px;
-}
-
-.total-fields label {
-  color: #f00;
 }
 
 .total-fields input,
@@ -316,8 +337,39 @@ form {
   background: #fff;
   margin: 0 15px;
   padding: 3px 5px;
-  height: 40px;
-  font-size: 16px;
-  text-align: center;
   vertical-align: middle;
+}
+
+.total-fields input {
+  text-align: right;
+}
+
+.final-data {
+  float: right;
+  display: block;
+}
+
+.final-data div {
+  display: block;
+  margin: 3px;
+}
+
+.final-data input:focus {
+  outline: 1px solid #0c0;
+}
+
+.sales-tax::-webkit-outer-spin-button,
+.sales-tax::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.sum-total-fields input {
+  margin-left: 43px;
+  outline: 1px solid #107;
+}
+
+.sum-total-fields label {
+  color: #f00;
+  font-weight: bold;
 }
