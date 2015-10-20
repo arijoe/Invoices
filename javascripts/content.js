@@ -49,15 +49,15 @@ var savedInvoices = {}; // Global variable for saved invoices
 
   // Change item price on select event
   $.formEvents.prototype.itemPrice = function () {
-    $( "select" ).change( function () {
-        var price = "";
-        var row = $(this).parent().parent();
+    $( ".line-items" ).change( function () {
+      var price = "";
+      var row = $(this).parent().parent();
 
-        $(row).find( "select option:selected" ).val( function() {
-          price = $( this ).data( "price" );
-        });
+      $(row).find( ".line-items" ).val( function() {
+        price = $( this ).data( "price" );
+      });
 
-        $(row).find(".price").val( (price).toFixed(2) );
+      $(row).find(".price").val( (price).toFixed(2) );
     }).change();
   };
 
