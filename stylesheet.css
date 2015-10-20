@@ -54,9 +54,11 @@ body {
 
 h1 {
   display: block;
+  background: #fff;
   font-size: 24px;
+  padding: 30px 50px 0px 50px;
   color: #000;
-  margin: 30px 50px;
+  margin-bottom: 30px;
   font-style: italic;
   transform:scale(1,1.5); /* W3C */
     -webkit-transform:scale(1,1.5); /* Safari and Chrome */
@@ -77,14 +79,14 @@ h2 {
   font-weight: bold;
   font-size: 18px;
   border: 2px solid #000;
-  border-radius: 2px;
+  border-radius: 5px;
   box-shadow: 0px -3px 0px 0px #888;
   cursor: pointer;
 }
 
 #create-new {
   left: 610px;
-  top: -8px;
+  top: 28px;
   color: #f00;
   z-index: 1;
 }
@@ -95,7 +97,7 @@ h2 {
 
 #create-new:active {
   color: #0c0;
-  top: -12px;
+  top: 26px;
   box-shadow: none;
 }
 
@@ -108,7 +110,7 @@ h2 {
   position: absolute;
   background: #eee;
   right: 35px;
-  top: 70px;
+  top: 100px;
 }
 
 .saved-invoice a {
@@ -150,7 +152,7 @@ form {
   color: #107;
   position: absolute;
   display: inline-block;
-  top: -259px;
+  top: -252px;
   left: 470px;
 }
 
@@ -160,7 +162,7 @@ form {
 
 #save-invoice:active {
   color: #0c0;
-  top: -261px;
+  top: -254px;
   box-shadow: none;
 }
 
@@ -278,7 +280,8 @@ form {
   padding: 3px 5px;
 }
 
-.input-row div input:focus {
+.input-row div input:focus,
+.input-row div select:focus {
   outline: 1px solid #0c0;
 }
 
@@ -301,7 +304,9 @@ form {
 }
 
 .add-item:hover,
-.remove-item:hover {
+.remove-item:hover,
+.add-item:focus,
+.remove-item:focus {
   color: #107;
 }
 
@@ -355,7 +360,8 @@ form {
   margin: 3px;
 }
 
-.final-data input:focus {
+.final-data input:focus,
+#notes-input:focus {
   outline: 1px solid #0c0;
 }
 
